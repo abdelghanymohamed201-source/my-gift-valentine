@@ -8,48 +8,24 @@
         body {
             background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
             min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex; justify-content: center; align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            color: #d63384;
-            overflow-x: hidden;
+            margin: 0; color: #d63384; overflow-x: hidden;
         }
         .container {
-            background: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            text-align: center;
-            max-width: 450px;
-            width: 90%;
-            display: none; /* مخفي للباسورد */
-            animation: fadeIn 1.5s;
+            background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center;
+            max-width: 450px; width: 90%; display: none; animation: fadeIn 1.5s;
         }
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-        
         .heart-icon { color: #ff4d6d; font-size: 50px; animation: beat .25s infinite alternate; }
         @keyframes beat { to { transform: scale(1.2); } }
-
         .btn-love {
-            background-color: #ff4d6d;
-            color: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 50px;
-            font-size: 1.1rem;
-            cursor: pointer;
-            margin-top: 20px;
-            transition: 0.3s;
-            text-decoration: none;
-            display: inline-block;
+            background-color: #ff4d6d; color: white; border: none; padding: 15px 30px;
+            border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin-top: 20px;
         }
-        .btn-love:hover { background-color: #d63384; transform: translateY(-3px); }
-
         #secondPage { display: none; }
         .big-text { font-size: 2.2rem; font-weight: bold; margin-top: 20px; color: #b0245d; }
-        .hearts-bg { font-size: 40px; margin: 20px; }
     </style>
 </head>
 <body>
@@ -57,41 +33,39 @@
     <div class="container" id="mainContent">
         <div class="heart-icon">❤️</div>
         <h1>كل سنة وأنتي معايا</h1>
-        <p>أنتي أجمل حاجة حصلت في حياتي، وعملتلك المكان ده مخصوص عشانك..</p>
+        <p>أنتي أجمل حاجة حصلت في حياتي..</p>
         
         <div style="margin-top: 20px;">
-            <p style="font-size: 0.9rem;">🎵 اشتغلي يا مزيكا...</p>
-            <iframe width="100%" height="120" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1252119748&color=%23ff5500&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false"></iframe>
+            <p>🎵 أغنية ألك وبس - غالية</p>
+            <audio id="myAudio" controls autoplay>
+                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                متصفحك لا يدعم تشغيل الأغاني.
+            </audio>
         </div>
 
         <button class="btn-love" onclick="showSecondPage()">دوسي هنا يا روحي</button>
     </div>
 
     <div class="container" id="secondPage">
-        <div class="hearts-bg">❤️❤️❤️</div>
         <div class="big-text">يا وصية رسول الله</div>
-        <div class="hearts-bg">❤️❤️❤️</div>
-        <p>ربنا يباركلي فيكي ويديمك نعمة في حياتي يا أغلى من عيوني.</p>
+        <p>ربنا يباركلي فيكي يا أغلى من عيوني.</p>
         <button class="btn-love" onclick="location.reload()">رجوع</button>
     </div>
 
     <script>
-        // كلمة السر
         var pass = prompt("اكتبي كلمة السر:");
-        
         if (pass === "بحبك") {
             document.getElementById("mainContent").style.display = "block";
+            // محاولة تشغيل الأغنية تلقائياً بعد إدخال الباسورد
+            document.getElementById("myAudio").play();
         } else {
-            alert("كلمة السر غلط يا قمر.. حاولي تاني!");
+            alert("كلمة السر غلط!");
             window.location.reload();
         }
-
-        // التبديل بين الصفحات
         function showSecondPage() {
             document.getElementById("mainContent").style.display = "none";
             document.getElementById("secondPage").style.display = "block";
         }
     </script>
-
 </body>
 </html>
