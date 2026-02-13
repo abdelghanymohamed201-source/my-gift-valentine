@@ -10,53 +10,70 @@
             min-height: 100vh;
             display: flex; justify-content: center; align-items: center;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0; color: #d63384;
+            margin: 0; overflow: hidden; color: #d63384;
         }
+
+        /* حاوية تأثير القلوب */
+        .hearts-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none; z-index: 0;
+        }
+
+        .heart-particle {
+            position: absolute; color: rgba(255, 77, 109, 0.6);
+            font-size: 20px; animation: pulseFade 4s ease-in-out infinite;
+            opacity: 0;
+        }
+
+        @keyframes pulseFade {
+            0% { transform: scale(0); opacity: 0; }
+            50% { opacity: 0.8; transform: scale(1.2); }
+            100% { transform: scale(1.5) translateY(-50px); opacity: 0; }
+        }
+
         .container {
-            background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.92); padding: 30px; border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center;
             max-width: 400px; width: 90%; display: none; animation: fadeIn 1s;
+            z-index: 10; position: relative; border: 1px solid #fff;
         }
+
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
-        .heart { color: #ff4d6d; font-size: 50px; animation: beat .3s infinite alternate; }
-        @keyframes beat { to { transform: scale(1.1); } }
+        
+        .main-heart { color: #ff4d6d; font-size: 65px; animation: beat 0.8s infinite alternate; margin-bottom: 10px; }
+        @keyframes beat { to { transform: scale(1.15); } }
+
         .btn {
             background-color: #ff4d6d; color: white; border: none; padding: 12px 25px;
-            border-radius: 50px; font-size: 1rem; cursor: pointer; margin-top: 15px; transition: 0.3s;
+            border-radius: 50px; font-size: 1.1rem; cursor: pointer; margin-top: 20px; transition: 0.3s;
         }
-        .btn:hover { background-color: #d63384; }
-        .music-box { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 2px solid #ff9a9e; background: #fff; }
+        .btn:hover { background-color: #d63384; transform: scale(1.05); }
     </style>
 </head>
 <body>
 
+    <div class="hearts-bg" id="heartsContainer"></div>
+
     <div class="container" id="mainContent">
-        <div class="heart">❤️</div>
+        <div class="main-heart">❤️</div>
         <h1>كل سنة وأنتي معايا</h1>
-        <p>أنتي أجمل حاجة حصلت في حياتي..</p>
-
-        <div class="music-box">
-            <p style="font-size: 0.9rem; margin: 10px 0;">🎵 يا غالي - فرقة جيتارا</p>
-            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/154673322&color=%23ff4d6d&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
-            </iframe>
-        </div>
-
+        <p style="font-size: 1.2rem; line-height: 1.6;">أنتي أجمل حاجة حصلت في حياتي، ربنا يخليكي ليا.</p>
         <button class="btn" onclick="showSecondPage()">دوسي هنا يا روحي</button>
     </div>
 
     <div class="container" id="secondPage">
         <div style="font-size: 40px;">❤️❤️❤️</div>
-        <h2 style="font-size: 2.2rem;">يا وصية رسول الله</h2>
-        <div style="font-size: 40px;">❤️❤️❤️</div>
-        <p>ربنا يباركلي فيكي ويديمك نعمة في حياتي يا أغلى من عيوني.</p>
+        <h2 style="font-size: 2rem;">يا وصية رسول الله</h2>
+        <p style="font-size: 1.1rem;">ربنا يباركلي فيكي ويديمك نعمة في حياتي يا أغلى من عيوني.</p>
         <button class="btn" onclick="location.reload()">رجوع</button>
     </div>
 
     <script>
+        // طلب كلمة السر
         var pass = prompt("اكتبي كلمة السر (بحبك):");
         if (pass === "بحبك") {
             document.getElementById("mainContent").style.display = "block";
+            startHearts();
         } else {
             alert("كلمة السر غلط!");
             window.location.reload();
@@ -65,6 +82,31 @@
         function showSecondPage() {
             document.getElementById("mainContent").style.display = "none";
             document.getElementById("secondPage").style.display = "block";
+        }
+
+        // كود القلوب المتحركة في الخلفية
+        function startHearts() {
+            const container = document.getElementById('heartsContainer');
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.classList.add('heart-particle');
+                heart.innerHTML = '❤️';
+                
+                // أماكن عشوائية
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = Math.random() * 100 + 'vh';
+                
+                // أحجام عشوائية
+                heart.style.fontSize = (Math.random() * 20 + 10) + 'px';
+                
+                // مدة أنيميشن مختلفة لكل قلب
+                heart.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                
+                container.appendChild(heart);
+                
+                // مسح القلب بعد ما يختفي عشان المتصفح ميهنجش
+                setTimeout(() => { heart.remove(); }, 4000);
+            }, 400); // قلب جديد كل 400 مللي ثانية
         }
     </script>
 </body>
