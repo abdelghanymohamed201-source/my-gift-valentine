@@ -13,7 +13,7 @@
             margin: 0; color: #d63384;
         }
         .container {
-            background: rgba(255, 255, 255, 0.9); padding: 30px; border-radius: 20px;
+            background: rgba(255, 255, 255, 0.95); padding: 30px; border-radius: 20px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.1); text-align: center;
             max-width: 400px; width: 90%; display: none; animation: fadeIn 1s;
         }
@@ -25,7 +25,7 @@
             border-radius: 50px; font-size: 1rem; cursor: pointer; margin-top: 15px; transition: 0.3s;
         }
         .btn:hover { background-color: #d63384; }
-        audio { margin-top: 15px; width: 100%; height: 35px; border-radius: 10px; }
+        .music-wrapper { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 2px solid #ff9a9e; }
     </style>
 </head>
 <body>
@@ -35,12 +35,11 @@
         <h1>كل سنة وأنتي معايا</h1>
         <p>أنتي أجمل حاجة حصلت في حياتي..</p>
 
-        <div style="margin: 20px 0;">
-            <p style="font-size: 0.9rem; font-weight: bold;">🎵 ألك وبس - غالية</p>
-            <audio id="loveSong" controls>
-                <source src="https://files.catbox.moe/kiv89u.mp3" type="audio/mpeg">
-                متصفحك لا يدعم تشغيل الأغنية.
-            </audio>
+        <div class="music-wrapper">
+            <p style="font-size: 0.9rem; margin: 10px 0;">🎵 حب عربية...</p>
+            <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1143890656&color=%23ff4d6d&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
+            </iframe>
         </div>
 
         <button class="btn" onclick="showSecondPage()">دوسي هنا يا روحي</button>
@@ -58,11 +57,8 @@
         var pass = prompt("اكتبي كلمة السر (بحبك):");
         if (pass === "بحبك") {
             document.getElementById("mainContent").style.display = "block";
-            var audio = document.getElementById("loveSong");
-            // محاولة تشغيل تلقائي
-            audio.play().catch(function(e) { console.log("Play failed"); });
         } else {
-            alert("كلمة السر غلط!");
+            alert("كلمة السر غلط يا قمر!");
             window.location.reload();
         }
 
