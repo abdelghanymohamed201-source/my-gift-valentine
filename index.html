@@ -50,3 +50,22 @@
         <h2 style="font-size: 2.2rem;">يا وصية رسول الله</h2>
         <div style="font-size: 40px;">❤️❤️❤️</div>
         <p>ربنا يباركلي فيكي ويديمك نعمة في حياتي يا أغلى من عيوني.</p>
+        <button class="btn" onclick="location.reload()">رجوع</button>
+    </div>
+
+    <script>
+        var pass = prompt("اكتبي كلمة السر (بحبك):");
+        if (pass === "بحبك") {
+            document.getElementById("mainContent").style.display = "block";
+        } else {
+            alert("كلمة السر غلط!");
+            window.location.reload();
+        }
+
+        function showSecondPage() {
+            document.getElementById("mainContent").style.display = "none";
+            document.getElementById("secondPage").style.display = "block";
+        }
+    </script>
+</body>
+</html>
