@@ -25,7 +25,7 @@
             border-radius: 50px; font-size: 1rem; cursor: pointer; margin-top: 15px; transition: 0.3s;
         }
         .btn:hover { background-color: #d63384; }
-        .music-wrapper { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 1px dashed #ff9a9e; }
+        .music-box { margin-top: 20px; border-radius: 12px; overflow: hidden; border: 2px solid #ff9a9e; }
     </style>
 </head>
 <body>
@@ -35,10 +35,10 @@
         <h1>كل سنة وأنتي معايا</h1>
         <p>أنتي أجمل حاجة حصلت في حياتي..</p>
 
-        <div class="music-wrapper">
-            <p style="font-size: 0.8rem; margin: 5px 0;">🎵 هدية صغيرة ليكي...</p>
+        <div class="music-box">
+            <p style="font-size: 0.9rem; margin: 10px 0;">🎵 الحب جاني - TUL8TE</p>
             <iframe width="100%" height="166" scrolling="no" frameborder="no" allow="autoplay" 
-                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/251343753&color=%23ff4d6d&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
+                src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1893922359&color=%23ff4d6d&auto_play=true&hide_related=true&show_comments=false&show_user=true&show_reposts=false&show_teaser=false">
             </iframe>
         </div>
 
@@ -50,22 +50,3 @@
         <h2 style="font-size: 2.2rem;">يا وصية رسول الله</h2>
         <div style="font-size: 40px;">❤️❤️❤️</div>
         <p>ربنا يباركلي فيكي ويديمك نعمة في حياتي يا أغلى من عيوني.</p>
-        <button class="btn" onclick="location.reload()">رجوع</button>
-    </div>
-
-    <script>
-        var pass = prompt("اكتبي كلمة السر (بحبك):");
-        if (pass === "بحبك") {
-            document.getElementById("mainContent").style.display = "block";
-        } else {
-            alert("كلمة السر غلط!");
-            window.location.reload();
-        }
-
-        function showSecondPage() {
-            document.getElementById("mainContent").style.display = "none";
-            document.getElementById("secondPage").style.display = "block";
-        }
-    </script>
-</body>
-</html>
